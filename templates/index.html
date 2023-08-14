@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Сословное деление города</title>
+</head>
+<body>
+    <h1>Сословное деление города</h1>
+    <ul>
+        {% for citizen in citizens_with_superiors %}
+            <li>
+                {{ citizen[1] }} {{ citizen[2] }}
+                - Возраст: {{ citizen[3] }},
+                Статус: {{ citizen[4] }},
+                Доход: {{ citizen[5] }}
+                {% if citizen[6] and citizen[7] %}
+                    <br>Подчиняется: {{ citizen[7] }} {{ citizen[6] }}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,21 @@
+CREATE TABLE citizens (
+    id SERIAL PRIMARY KEY,
+    first_name VARCHAR(255),
+    last_name VARCHAR(255),
+    age INTEGER,
+    social_status VARCHAR(255),
+    monthly_income INTEGER
+);
+
+CREATE TABLE hierarchy (
+    superior_id INTEGER,
+    subordinate_id INTEGER,
+    FOREIGN KEY (superior_id) REFERENCES citizens (id),
+    FOREIGN KEY (subordinate_id) REFERENCES citizens (id)
+);
+
+ALTER TABLE citizens ADD COLUMN superior_id INTEGER;
+UPDATE citizens SET superior_id = NULL WHERE social_status = 'peasant';
+UPDATE citizens SET superior_id = 1 WHERE social_status = 'knight';
+UPDATE citizens SET superior_id = 2 WHERE social_status = 'baron';
+UPDATE citizens SET superior_id = 3 WHERE social_status = 'King';
